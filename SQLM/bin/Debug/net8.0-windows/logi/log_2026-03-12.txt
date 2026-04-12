@@ -1,0 +1,55 @@
+2026-03-12 09:47:31.0134|Info|start|
+2026-03-12 09:47:31.0398|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-12 09:47:31.1590|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-12 09:47:31.2293|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-12 09:47:31.3155|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-12 09:47:37.9721|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Scenario].[Scenario] order by 1 desc|
+2026-03-12 09:47:38.0075|Info|Liczba wiersz :748   Scenario Scenario/VM-SQL-ECDP-REL:ECDP_TR_Unit_118|
+2026-03-12 09:47:53.8420|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-12 09:47:56.3284|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Scenario].[Scenario] order by 1 desc|
+2026-03-12 09:47:56.3416|Info|Liczba wiersz :617   Scenario Scenario/vm-sql-ecdp-dev:ECDP_TR_Unit_1|

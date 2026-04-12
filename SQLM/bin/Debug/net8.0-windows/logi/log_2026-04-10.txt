@@ -1,0 +1,548 @@
+2026-04-10 08:22:21.8196|Info|start|
+2026-04-10 08:22:21.8473|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:22:21.9755|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:22:22.0376|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:22:22.1061|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 08:22:34.8023|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 08:25:32.4161|Info|start|
+2026-04-10 08:25:32.4393|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:25:32.5350|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:25:32.5657|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:25:32.5924|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 08:25:36.2659|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 08:25:46.2532|Info|
+
+====================      pytamy o wynik        ==========
+
+SELECT 
+    c.Id,
+    c.DateOfBirth,
+    day(c.DateOfBirth)
+FROM [Customer].[Customer] c WITH (NOLOCK)
+WHERE
+    c.Status = 1
+    AND c.DateOfBirth IS NOT NULL
+    AND (
+        (
+            MONTH(c.DateOfBirth) = MONTH(DATEADD(DAY, 1, CAST(GETDATE() AS DATE)))
+            AND DAY(c.DateOfBirth) = DAY(DATEADD(DAY, 1, CAST(GETDATE() AS DATE)))
+        )
+        OR
+        (
+            MONTH(c.DateOfBirth) = 2
+            AND DAY(c.DateOfBirth) = 29
+            AND MONTH(DATEADD(DAY, 1, CAST(GETDATE() AS DATE))) = 2
+            AND DAY(DATEADD(DAY, 1, CAST(GETDATE() AS DATE))) = 28
+            AND YEAR(DATEADD(DAY, 1, CAST(GETDATE() AS DATE))) % 4 <> 0
+        )
+    )
+ORDER BY 3 DESC
+|
+2026-04-10 08:26:11.8882|Info|
+
+====================      pytamy o wynik        ==========
+
+SELECT 
+    c.Id,
+    c.DateOfBirth,
+    day(c.DateOfBirth)
+FROM [Customer].[Customer] c WITH (NOLOCK)
+WHERE
+    c.Status = 1
+    AND c.DateOfBirth IS NOT NULL
+    AND (
+        (
+            MONTH(c.DateOfBirth) = MONTH(DATEADD(DAY, -1, CAST(GETDATE() AS DATE)))
+            AND DAY(c.DateOfBirth) = DAY(DATEADD(DAY, -1, CAST(GETDATE() AS DATE)))
+        )
+        OR
+        (
+            MONTH(c.DateOfBirth) = 2
+            AND DAY(c.DateOfBirth) = 29
+            AND MONTH(DATEADD(DAY, -1, CAST(GETDATE() AS DATE))) = 2
+            AND DAY(DATEADD(DAY, -1, CAST(GETDATE() AS DATE))) = 28
+            AND YEAR(DATEADD(DAY, -1, CAST(GETDATE() AS DATE))) % 4 <> 0
+        )
+    )
+ORDER BY 3 DESC
+|
+2026-04-10 08:26:25.8799|Info|
+
+====================      pytamy o wynik        ==========
+
+SELECT 
+    c.Id,
+    c.DateOfBirth,
+    day(c.DateOfBirth)
+FROM [Customer].[Customer] c WITH (NOLOCK)
+WHERE
+    c.Status = 1
+    AND c.DateOfBirth IS NOT NULL
+    AND (
+        (
+            MONTH(c.DateOfBirth) = MONTH(DATEADD(DAY, 23, CAST(GETDATE() AS DATE)))
+            AND DAY(c.DateOfBirth) = DAY(DATEADD(DAY, 23, CAST(GETDATE() AS DATE)))
+        )
+        OR
+        (
+            MONTH(c.DateOfBirth) = 2
+            AND DAY(c.DateOfBirth) = 29
+            AND MONTH(DATEADD(DAY, 23, CAST(GETDATE() AS DATE))) = 2
+            AND DAY(DATEADD(DAY, 23, CAST(GETDATE() AS DATE))) = 28
+            AND YEAR(DATEADD(DAY, 23, CAST(GETDATE() AS DATE))) % 4 <> 0
+        )
+    )
+ORDER BY 3 DESC
+|
+2026-04-10 08:26:40.2393|Info|
+
+====================      pytamy o wynik        ==========
+
+SELECT 
+    c.Id,
+    c.DateOfBirth,
+    day(c.DateOfBirth)
+FROM [Customer].[Customer] c WITH (NOLOCK)
+WHERE
+    c.Status = 1
+    AND c.DateOfBirth IS NOT NULL
+    AND (
+        (
+            MONTH(c.DateOfBirth) = MONTH(DATEADD(DAY, 40, CAST(GETDATE() AS DATE)))
+            AND DAY(c.DateOfBirth) = DAY(DATEADD(DAY, 40, CAST(GETDATE() AS DATE)))
+        )
+        OR
+        (
+            MONTH(c.DateOfBirth) = 2
+            AND DAY(c.DateOfBirth) = 29
+            AND MONTH(DATEADD(DAY, 40, CAST(GETDATE() AS DATE))) = 2
+            AND DAY(DATEADD(DAY, 40, CAST(GETDATE() AS DATE))) = 28
+            AND YEAR(DATEADD(DAY, 40, CAST(GETDATE() AS DATE))) % 4 <> 0
+        )
+    )
+ORDER BY 3 DESC
+|
+2026-04-10 08:26:48.1408|Info|
+
+====================      pytamy o wynik        ==========
+
+SELECT 
+    c.Id,
+    c.DateOfBirth,
+    day(c.DateOfBirth)
+FROM [Customer].[Customer] c WITH (NOLOCK)
+WHERE
+    c.Status = 1
+    AND c.DateOfBirth IS NOT NULL
+    AND (
+        (
+            MONTH(c.DateOfBirth) = MONTH(DATEADD(DAY, -40, CAST(GETDATE() AS DATE)))
+            AND DAY(c.DateOfBirth) = DAY(DATEADD(DAY, -40, CAST(GETDATE() AS DATE)))
+        )
+        OR
+        (
+            MONTH(c.DateOfBirth) = 2
+            AND DAY(c.DateOfBirth) = 29
+            AND MONTH(DATEADD(DAY, -40, CAST(GETDATE() AS DATE))) = 2
+            AND DAY(DATEADD(DAY, -40, CAST(GETDATE() AS DATE))) = 28
+            AND YEAR(DATEADD(DAY, -40, CAST(GETDATE() AS DATE))) % 4 <> 0
+        )
+    )
+ORDER BY 3 DESC
+|
+2026-04-10 08:26:53.0900|Info|
+
+====================      pytamy o wynik        ==========
+
+SELECT 
+    c.Id,
+    c.DateOfBirth,
+    day(c.DateOfBirth)
+FROM [Customer].[Customer] c WITH (NOLOCK)
+WHERE
+    c.Status = 1
+    AND c.DateOfBirth IS NOT NULL
+    AND (
+        (
+            MONTH(c.DateOfBirth) = MONTH(DATEADD(DAY, -41, CAST(GETDATE() AS DATE)))
+            AND DAY(c.DateOfBirth) = DAY(DATEADD(DAY, -41, CAST(GETDATE() AS DATE)))
+        )
+        OR
+        (
+            MONTH(c.DateOfBirth) = 2
+            AND DAY(c.DateOfBirth) = 29
+            AND MONTH(DATEADD(DAY, -41, CAST(GETDATE() AS DATE))) = 2
+            AND DAY(DATEADD(DAY, -41, CAST(GETDATE() AS DATE))) = 28
+            AND YEAR(DATEADD(DAY, -41, CAST(GETDATE() AS DATE))) % 4 <> 0
+        )
+    )
+ORDER BY 3 DESC
+|
+2026-04-10 08:29:43.6959|Info|start|
+2026-04-10 08:29:43.7250|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:29:43.8189|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:29:43.8471|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:29:43.8840|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 08:29:45.8298|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 08:29:51.2654|Info|
+
+====================      pytamy o wynik        ==========
+select c.FirstName,m.customerid,count(*) from Customer.[CustomerMobileDevice] m
+join Customer.Customer c on m.CustomerId=c.Id
+group by c.FirstName,m.customerid
+having count(*)>1|
+2026-04-10 08:32:58.7366|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Config].[CustomAttribute] order by 1 desc|
+2026-04-10 08:32:58.7846|Info|Liczba wiersz :27   Config CustomAttribute/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-04-10 08:33:08.9564|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Config].[CustomAttribute] order by 1 desc|
+2026-04-10 08:33:08.9564|Info|Liczba wiersz :27   Config CustomAttribute/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-04-10 08:38:45.9496|Info|
+
+====================      pytamy o wynik        ==========
+select id,name from [Config].[CustomAttribute]  order by 1|
+2026-04-10 08:41:15.7189|Info|
+
+====================      pytamy o wynik        ==========
+select id,name from [Config].[CustomAttribute]  order by 1|
+2026-04-10 08:45:59.5268|Info|
+
+====================      pytamy o wynik        ==========
+
+SELECT 
+    id,
+    name,
+    'select * from Customer.CustomAttributeValue_' + RIGHT('000' + CAST(id AS VARCHAR(3)), 3)
+FROM [Config].[CustomAttribute]
+ORDER BY 1
+|
+2026-04-10 08:48:42.0150|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [MassAction].[AttributeUpdate] order by 1 desc|
+2026-04-10 08:48:42.0150|Info|Liczba wiersz :73   MassAction AttributeUpdate/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-04-10 08:53:06.9086|Info|start|
+2026-04-10 08:53:06.9320|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:53:07.0368|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:53:07.0670|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 08:53:07.0941|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 08:53:31.1519|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 08:54:08.2388|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [MassAction].[AttributeUpdate] order by 1 desc|
+2026-04-10 08:54:08.2466|Info|Liczba wiersz :73   MassAction AttributeUpdate/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-04-10 08:58:53.8356|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [MassAction].[AttributeUpdate] order by 1 desc|
+2026-04-10 09:41:51.9311|Info|start|
+2026-04-10 09:41:51.9624|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 09:41:52.0631|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 09:41:52.0914|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 09:41:52.1327|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 09:42:10.6939|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 09:42:17.1214|Info|
+
+====================      pytamy o wynik        ==========
+
+SELECT 
+    id,
+    name,
+    'select * from Customer.CustomAttributeValue_' + RIGHT('000' + CAST(id AS VARCHAR(3)), 3)
+FROM [Config].[CustomAttribute]
+ORDER BY 1
+|
+2026-04-10 09:42:56.5275|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001|
+2026-04-10 09:43:17.5091|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001 where value='sw0941'|
+2026-04-10 09:44:20.1149|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001 where value like 'sw09'|
+2026-04-10 09:45:14.8155|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001 where value like 'sw09'|
+2026-04-10 09:45:27.4553|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001|
+2026-04-10 09:46:12.6273|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001 where Value like 'sw%'|
+2026-04-10 09:46:18.8594|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001 where Value like 'sw09%'|
+2026-04-10 09:49:24.0212|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001 where Value like 'sw09%'|
+2026-04-10 09:49:30.6239|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001 where Value like 'sw098%'|
+2026-04-10 09:49:41.6658|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001 where Value like 'sw09%'|
+2026-04-10 09:49:51.7198|Info|
+
+====================      pytamy o wynik        ==========
+select * from Customer.CustomAttributeValue_001 where Value like 'sw0948%'|
+2026-04-10 15:37:13.1099|Info|start|
+2026-04-10 15:37:13.1434|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 15:37:13.2583|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 15:37:13.3248|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-10 15:37:13.3919|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 15:37:26.8728|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-10 15:37:29.2596|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomAttributeValue_001] order by 1 desc|
+2026-04-10 15:37:29.2596|Info|Liczba wiersz :13   Customer CustomAttributeValue_001/vm-sql-ecdp-dev:ECDP_TR_Unit_493|

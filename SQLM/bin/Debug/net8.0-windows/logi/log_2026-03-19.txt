@@ -1,0 +1,83 @@
+2026-03-19 10:56:08.7214|Info|start|
+2026-03-19 10:56:08.7572|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-19 10:56:08.9114|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-19 10:56:09.1235|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-19 10:56:09.1893|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-19 10:56:12.6928|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Blocklist].[BlockedEmail] order by 1 desc|
+2026-03-19 10:56:12.6928|Info|FormData|
+2026-03-19 10:56:16.9632|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Config].[OrderAttribute] order by 1 desc|
+2026-03-19 10:56:16.9632|Info|FormData|
+2026-03-19 10:56:23.7384|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-19 10:56:25.9337|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Blocklist].[BlockedPhone] order by 1 desc|
+2026-03-19 10:56:25.9452|Info|Liczba wiersz :6   Blocklist BlockedPhone/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-03-19 10:56:34.2954|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomAttributeValue_047] order by 1 desc|
+2026-03-19 10:56:34.3226|Info|Liczba wiersz :149   Customer CustomAttributeValue_047/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-03-19 10:56:41.7998|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-19 10:56:45.4273|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomAttributeValue_001] order by 1 desc|
+2026-03-19 10:56:45.4300|Info|Liczba wiersz :13   Customer CustomAttributeValue_001/vm-sql-ecdp-dev:ECDP_TR_Unit_493|

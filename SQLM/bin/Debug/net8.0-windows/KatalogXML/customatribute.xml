@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HistoryQuery2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Question>Brak</Question>
+	<Title>Atrybuty</Title>
+	 
+   
+	<Query2>
+		<Title>Urodziny w wybranym dniu</Title>
+		<Text><![CDATA[
+SELECT 
+    id,
+    name,
+    'select * from Customer.CustomAttributeValue_' + RIGHT('000' + CAST(id AS VARCHAR(3)), 3)
+FROM [Config].[CustomAttribute]
+ORDER BY 1
+]]></Text>    
+	</Query2>
+
+	
+</HistoryQuery2>

@@ -1,0 +1,5 @@
+2026-03-20 08:52:32.5045|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomAttributeValue_001] order by 1 desc|
+2026-03-20 08:52:32.5268|Info|Liczba wiersz :13   Customer CustomAttributeValue_001/vm-sql-ecdp-dev:ECDP_TR_Unit_493|

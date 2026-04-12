@@ -1,0 +1,114 @@
+2026-03-30 12:39:13.9565|Info|start|
+2026-03-30 12:39:13.9888|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-30 12:39:14.2677|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-30 12:39:14.3369|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-30 12:39:14.4272|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-30 12:40:21.9201|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-30 12:40:29.2547|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Unit].[Unit] order by 1 desc|
+2026-03-30 12:40:29.2659|Info|Liczba wiersz :206   Unit Unit/vm-sql-ecdp-dev:ECDP_TR_Common|
+2026-03-30 12:41:26.3154|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Unit].[Unit] where name like '%to jest bardzo długa nazwa lorem ips%' order by 1 desc|
+2026-03-30 12:41:38.2879|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Unit].[Unit] where name like '%długa%' order by 1 desc|
+2026-03-30 12:51:03.4319|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Unit].[Organization] order by 1 desc|
+2026-03-30 12:51:03.4446|Info|Liczba wiersz :76   Unit Organization/vm-sql-ecdp-dev:ECDP_TR_Common|
+2026-03-30 12:52:05.8588|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Unit].[Organization] where id=50|
+2026-03-30 12:53:19.2007|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Unit].[Organization] order by 1 desc|
+2026-03-30 12:53:19.2296|Info|Liczba wiersz :76   Unit Organization/vm-sql-ecdp-dev:ECDP_TR_Common|
+2026-03-30 12:53:45.9550|Info|
+
+====================      pytamy o lista kolumn        ==========
+ SELECT TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE
+                FROM INFORMATION_SCHEMA.COLUMNS
+                WHERE  TABLE_NAME ='Organization' and TABLE_SCHEMA='Unit' ORDER BY ORDINAL_POSITION|
+2026-03-30 12:53:45.9827|Info|
+
+====================      pytamy o lista procedur dla tabeli        ==========
+ SELECT 
+    s.name + '.' + o.name AS ObjectName,   -- np. dbo.TruncateMessagesQueue
+    o.type_desc AS ObjectType,
+    m.definition
+FROM sys.sql_modules m
+JOIN sys.objects o ON m.object_id = o.object_id
+JOIN sys.schemas s ON o.schema_id = s.schema_id
+              WHERE m.definition LIKE '%Unit%Organization%'|
+2026-03-30 12:53:46.6429|Info|
+
+====================      pytamy o powiazania        ==========
+SELECT 
+    fk.name AS ForeignKey,
+    s1.name + '.' + tp.name AS ParentTable,
+    c1.name AS ParentColumn,
+    s2.name + '.' + ref.name AS ReferencedTable,
+    c2.name AS ReferencedColumn
+FROM sys.foreign_keys fk
+JOIN sys.foreign_key_columns fkc 
+    ON fkc.constraint_object_id = fk.object_id
+JOIN sys.tables tp 
+    ON fkc.parent_object_id = tp.object_id
+JOIN sys.schemas s1 
+    ON tp.schema_id = s1.schema_id
+JOIN sys.columns c1 
+    ON fkc.parent_object_id = c1.object_id AND fkc.parent_column_id = c1.column_id
+JOIN sys.tables ref 
+    ON fkc.referenced_object_id = ref.object_id
+JOIN sys.schemas s2 
+    ON ref.schema_id = s2.schema_id
+JOIN sys.columns c2 
+    ON fkc.referenced_object_id = c2.object_id AND fkc.referenced_column_id = c2.column_id
+WHERE s1.name ='Unit' AND tp.name = 'Organization' ORDER BY fk.name|

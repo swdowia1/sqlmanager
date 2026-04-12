@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HistoryQuery2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Question>Podaj id wiadomosci email</Question>
+	<Title>wiadomosc</Title>
+	 
+   
+	<Query2>
+		<Title>EmailMessage</Title>
+		<Text>select top 1000 * from [Email].[EmailMessage]
+where Id={0}
+order by 1 desc</Text>    
+	</Query2>
+	<Query2>
+		<Title>content</Title>
+		<Text>select top 1000 * from [Email].[EmailMessageContent]
+where Id={0}</Text>    
+	</Query2>
+	
+</HistoryQuery2>

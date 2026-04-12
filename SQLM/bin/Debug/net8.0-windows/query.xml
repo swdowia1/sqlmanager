@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HistoryQuery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Query>
+    <Title>conset_2x</Title>
+    <Text>select * from Customer.CustomerConsentUnconfirmed u
+join Customer.CustomerConsent c on u.CustomerId=c.CustomerId and u.ConsentId=c.ConsentId</Text>
+    <Data>251008100410</Data>
+  </Query>
+  <Query>
+    <Title>customer_email</Title>
+    <Text>select top 1000 c.LastName,c.FirstName,e.Email,c.CreatedAt,  e.CustomerId from Customer.CustomerEmail e
+join Customer.Customer c on e.CustomerId=c.Id
+
+order by c.Id desc</Text>
+    <Data>251003114830</Data>
+  </Query>
+  <Query>
+    <Title>zgody</Title>
+    <Text>select cc.Name,cs.ValidFrom,k.LastName from [Customer].[CustomerConsent] cs
+join Config.Consent cc on cs.ConsentId=cc.Id
+join Customer.Customer k on cs.CustomerId=k.Id
+where cs.customerid=1449762
+ order by cs.ValidFrom desc</Text>
+    <Data>250930153309</Data>
+  </Query>
+  <Query>
+    <Title>zgodyklienta_1449762</Title>
+    <Text>select top 1000 * from [Customer].[CustomerConsent]
+where customerid=1449762
+ order by 1 desc</Text>
+    <Data>250930150705</Data>
+  </Query>
+  <Query>
+    <Title>unit_key</Title>
+    <Text>select k.UnitId,k.[Key],u.Name from unit.UnitApiKey k
+join Unit.Unit u on k.UnitId=u.Id</Text>
+    <Data>250930075434</Data>
+  </Query>
+  <Query>
+    <Title>linki sms kampanie</Title>
+    <Text>DECLARE @messageId INT = {0};
+
+SELECT * FROM [Sms].[SmsTrackedLink] WHERE [SmsMessageContentId] IN
+(
+    SELECT [Id] FROM [Sms].[SmsMessageContent] WHERE [SmsMessageId] = @messageId
+)
+ORDER BY [Id] DESC</Text>
+    <Data>251108115203</Data>
+	<Question>Podaj id wiadomosci</Question>
+  </Query>
+</HistoryQuery>

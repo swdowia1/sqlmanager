@@ -1,0 +1,182 @@
+2026-03-07 19:37:56.7580|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Config].[DnsRecord] order by 1 desc|
+2026-03-07 19:37:56.7580|Info|Liczba wiersz :5   Config DnsRecord/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-03-07 19:38:01.2352|Info|
+
+====================      pytamy o lista kolumn        ==========
+ SELECT TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE
+                FROM INFORMATION_SCHEMA.COLUMNS
+                WHERE  TABLE_NAME ='DnsRecord' and TABLE_SCHEMA='Config' ORDER BY ORDINAL_POSITION|
+2026-03-07 19:38:01.2750|Info|
+
+====================      pytamy o lista procedur dla tabeli        ==========
+ SELECT 
+    s.name + '.' + o.name AS ObjectName,   -- np. dbo.TruncateMessagesQueue
+    o.type_desc AS ObjectType,
+    m.definition
+FROM sys.sql_modules m
+JOIN sys.objects o ON m.object_id = o.object_id
+JOIN sys.schemas s ON o.schema_id = s.schema_id
+              WHERE m.definition LIKE '%Config%DnsRecord%'|
+2026-03-07 19:38:01.9798|Info|
+
+====================      pytamy o powiazania        ==========
+SELECT 
+    fk.name AS ForeignKey,
+    s1.name + '.' + tp.name AS ParentTable,
+    c1.name AS ParentColumn,
+    s2.name + '.' + ref.name AS ReferencedTable,
+    c2.name AS ReferencedColumn
+FROM sys.foreign_keys fk
+JOIN sys.foreign_key_columns fkc 
+    ON fkc.constraint_object_id = fk.object_id
+JOIN sys.tables tp 
+    ON fkc.parent_object_id = tp.object_id
+JOIN sys.schemas s1 
+    ON tp.schema_id = s1.schema_id
+JOIN sys.columns c1 
+    ON fkc.parent_object_id = c1.object_id AND fkc.parent_column_id = c1.column_id
+JOIN sys.tables ref 
+    ON fkc.referenced_object_id = ref.object_id
+JOIN sys.schemas s2 
+    ON ref.schema_id = s2.schema_id
+JOIN sys.columns c2 
+    ON fkc.referenced_object_id = c2.object_id AND fkc.referenced_column_id = c2.column_id
+WHERE s1.name ='Config' AND tp.name = 'DnsRecord' ORDER BY fk.name|
+2026-03-07 19:38:37.4245|Info|
+
+====================      pytamy o wynik        ==========
+ SELECT TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE
+                FROM INFORMATION_SCHEMA.COLUMNS|
+2026-03-07 19:45:19.8094|Info|start|
+2026-03-07 19:45:19.8581|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-07 19:45:20.0147|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-07 19:45:20.0413|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-07 19:45:20.0719|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-07 19:45:39.8535|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Blocklist].[BlocklistImport] order by 1 desc|
+2026-03-07 19:52:15.6008|Info|start|
+2026-03-07 19:52:15.6600|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-07 19:52:15.8289|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-07 19:52:15.8580|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-07 19:52:15.8868|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-07 19:52:21.7021|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Config].[DnsRecordHistory] order by 1 desc|
+2026-03-07 19:52:21.7365|Info|Liczba wiersz :69   Config DnsRecordHistory/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-03-07 19:53:11.3450|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-07 19:53:14.7689|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-07 19:53:15.7266|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-07 19:53:21.1860|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-07 19:53:49.7064|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [dbo].[ScenarioStartExclusiveService] order by 1 desc|
+2026-03-07 19:53:49.7097|Info|FormData|

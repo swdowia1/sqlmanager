@@ -1,0 +1,100 @@
+2026-04-01 16:41:48.9553|Info|start|
+2026-04-01 16:41:48.9932|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-01 16:41:49.1257|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-01 16:41:49.1850|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-01 16:41:49.2437|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-01 16:41:51.2309|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-01 16:42:05.6626|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerWebPush] order by 1 desc|
+2026-04-01 16:42:05.6762|Info|Liczba wiersz :221   Customer CustomerWebPush/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-04-01 16:42:26.9216|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerWebPush] status=1 order by 1 desc|
+2026-04-01 16:42:26.9252|Error|Incorrect syntax near '='.Core .Net SqlClient Data Provider funkcja :classFun.SyberiaZapytanie|
+2026-04-01 16:42:43.7978|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerWebPush] order by 1 desc|
+2026-04-01 16:43:01.6284|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerWebPush] where status=1 order by 1 desc|
+2026-04-01 18:16:51.8352|Info|start|
+2026-04-01 18:16:51.8866|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-01 18:16:51.9889|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-01 18:16:52.0436|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-01 18:16:52.0935|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-01 18:16:58.8530|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Config].[Consent] order by 1 desc|
+2026-04-01 18:16:58.8530|Info|Liczba wiersz :100   Config Consent/vm-sql-ecdp-dev:ECDP_TR_Unit_1|

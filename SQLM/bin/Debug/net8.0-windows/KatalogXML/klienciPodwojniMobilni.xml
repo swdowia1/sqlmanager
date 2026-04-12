@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HistoryQuery2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Question>brak</Question>
+	<Title>Klienci mobile podwjny</Title>
+	 
+   
+	<Query2>
+		<Title>podwojni</Title>
+		<Text>select c.FirstName,m.customerid,count(*) from Customer.[CustomerMobileDevice] m
+join Customer.Customer c on m.CustomerId=c.Id
+group by c.FirstName,m.customerid
+having count(*)>1</Text>    
+	</Query2>
+	
+	
+</HistoryQuery2>

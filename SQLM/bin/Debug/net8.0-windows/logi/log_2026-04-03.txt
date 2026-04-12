@@ -1,0 +1,79 @@
+2026-04-03 10:21:07.2236|Info|start|
+2026-04-03 10:21:07.2517|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-03 10:21:07.3711|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-03 10:21:07.4335|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-03 10:21:07.5177|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-03 10:21:18.1334|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerEmail] order by 1 desc|
+2026-04-03 10:21:18.1334|Info|Liczba wiersz :12   Customer CustomerEmail/vm-sql-ecdp-dev:ECDP_TR_Unit_493|
+2026-04-03 10:22:24.1128|Info|start|
+2026-04-03 10:22:24.1318|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-03 10:22:24.2292|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-03 10:22:24.2558|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-04-03 10:22:24.2821|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-04-03 10:22:34.1173|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Blocklist].[BlockedEmail] order by 1 desc|
+2026-04-03 10:22:34.1211|Info|FormData|
+2026-04-03 10:22:46.4912|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerEmail] order by 1 desc|
+2026-04-03 10:22:46.5007|Info|Liczba wiersz :12   Customer CustomerEmail/vm-sql-ecdp-dev:ECDP_TR_Unit_493|

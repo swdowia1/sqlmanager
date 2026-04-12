@@ -1,0 +1,110 @@
+2026-03-08 18:25:39.0172|Info|start|
+2026-03-08 18:25:39.0561|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-08 18:25:39.1951|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-08 18:25:39.2633|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-08 18:25:39.3521|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-08 18:25:43.1407|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-08 18:25:48.1396|Info|
+
+====================      pytamy o wynik        ==========
+
+                SELECT /* SegmentId = 189 */ 
+                    c.Id
+                FROM
+                    [Customer].[Customer] AS c WITH (NOLOCK)
+                
+                
+                
+                
+                
+                
+                WHERE
+                    c.Status = 1
+                    AND (((c.FirstName IS NOT NULL AND c.FirstName = @p_881644eb429c49d8892a6bdbff687917))) 
+            AND c.DateOfBirth IS NOT NULL
+            AND(
+                (
+                    MONTH(c.DateOfBirth) = MONTH(DATEADD(DAY, 3, CAST(GETUTCDATE() AS DATE)))
+            AND DAY(c.DateOfBirth) = DAY(DATEADD(DAY, 3, CAST(GETUTCDATE() AS DATE)))
+                )
+            OR
+            (
+                MONTH(c.DateOfBirth) = 2
+            AND DAY(c.DateOfBirth) = 29
+            AND MONTH(DATEADD(DAY, 3, CAST(GETUTCDATE() AS DATE))) = 2
+            AND DAY(DATEADD(DAY, 3, CAST(GETUTCDATE() AS DATE))) = 28
+            AND YEAR(DATEADD(DAY,3, CAST(GETUTCDATE() AS DATE))) % 4 <> 0
+                )
+                )|
+2026-03-08 18:25:48.1463|Error|Must declare the scalar variable "@p_881644eb429c49d8892a6bdbff687917".Core .Net SqlClient Data Provider funkcja :classFun.SyberiaZapytanie|
+2026-03-08 18:26:29.2133|Info|
+
+====================      pytamy o wynik        ==========
+
+                SELECT /* SegmentId = 189 */ 
+                    c.Id
+                FROM
+                    [Customer].[Customer] AS c WITH (NOLOCK)
+                
+                
+                
+                
+                
+                
+                WHERE
+                    c.Status = 1
+                    AND (((c.FirstName IS NOT NULL AND c.FirstName ='sw2026'))) 
+            AND c.DateOfBirth IS NOT NULL
+            AND(
+                (
+                    MONTH(c.DateOfBirth) = MONTH(DATEADD(DAY, 3, CAST(GETUTCDATE() AS DATE)))
+            AND DAY(c.DateOfBirth) = DAY(DATEADD(DAY, 3, CAST(GETUTCDATE() AS DATE)))
+                )
+            OR
+            (
+                MONTH(c.DateOfBirth) = 2
+            AND DAY(c.DateOfBirth) = 29
+            AND MONTH(DATEADD(DAY, 3, CAST(GETUTCDATE() AS DATE))) = 2
+            AND DAY(DATEADD(DAY, 3, CAST(GETUTCDATE() AS DATE))) = 28
+            AND YEAR(DATEADD(DAY,3, CAST(GETUTCDATE() AS DATE))) % 4 <> 0
+                )
+                )|

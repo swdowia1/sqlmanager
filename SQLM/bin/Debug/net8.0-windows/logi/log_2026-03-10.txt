@@ -1,0 +1,100 @@
+2026-03-10 13:29:28.2378|Info|start|
+2026-03-10 13:29:28.2706|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-10 13:29:28.5539|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-10 13:29:28.6256|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-10 13:29:28.6946|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-10 13:38:47.4647|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-10 13:39:07.0467|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerWebPush] order by 1 desc|
+2026-03-10 13:39:07.0604|Info|Liczba wiersz :221   Customer CustomerWebPush/VM-SQL-ECDP-REL:ECDP_TR_Unit_118|
+2026-03-10 13:39:27.7046|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerWebPush] where customerid=81576 order by 1 desc|
+2026-03-10 13:40:20.3272|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerMobileDevice] order by 1 desc|
+2026-03-10 13:40:20.3707|Info|Liczba wiersz :132   Customer CustomerMobileDevice/VM-SQL-ECDP-REL:ECDP_TR_Unit_118|
+2026-03-10 13:40:54.3400|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerMobileDevice] order by 1 desc|
+2026-03-10 13:40:54.3450|Info|Liczba wiersz :132   Customer CustomerMobileDevice/VM-SQL-ECDP-REL:ECDP_TR_Unit_118|
+2026-03-10 13:41:11.1108|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerMobileDevice] where customerid=81576 order by 1 desc|
+2026-03-10 15:34:26.6449|Info|start|
+2026-03-10 15:34:26.6761|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-10 15:34:26.7774|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-10 15:34:26.8080|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-10 15:34:26.8642|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|

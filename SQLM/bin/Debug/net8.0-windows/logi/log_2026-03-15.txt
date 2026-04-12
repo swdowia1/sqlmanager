@@ -1,0 +1,117 @@
+2026-03-15 09:42:29.2272|Info|start|
+2026-03-15 09:42:29.2642|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-15 09:42:29.4569|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-15 09:42:29.5182|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-15 09:42:29.6096|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-15 09:42:31.3985|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Blocklist].[BlocklistImport] order by 1 desc|
+2026-03-15 09:42:31.4057|Info|Liczba wiersz :48   Blocklist BlocklistImport/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-03-15 09:42:42.3194|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-15 09:42:43.4316|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Blocklist].[BlocklistImport] order by 1 desc|
+2026-03-15 09:42:43.4316|Info|Liczba wiersz :48   Blocklist BlocklistImport/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-03-15 10:34:37.4171|Info|start|
+2026-03-15 10:34:37.4482|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-15 10:34:37.5545|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-15 10:34:37.5839|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-15 10:34:37.6207|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-15 10:34:40.9285|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-15 10:34:43.9508|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomAttributeValue_001] order by 1 desc|
+2026-03-15 10:34:43.9508|Info|Liczba wiersz :12   Customer CustomAttributeValue_001/vm-sql-ecdp-dev:ECDP_TR_Unit_493|
+2026-03-15 10:35:54.1591|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomAttributeValue_001] order by 1 desc|
+2026-03-15 10:46:14.9426|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomAttributeValue_001] order by 1 desc|
+2026-03-15 10:47:11.9050|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomAttributeValue_001] order by 1 desc|

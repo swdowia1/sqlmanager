@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HistoryQuery2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Question>Podaj id wiadomosci</Question>
+	<Title>Lista linków śledzonyh</Title>
+	<Query2>
+		<Title>SmsTrackedLink</Title>
+		<Text>
+
+		SELECT * FROM [Sms].[SmsTrackedLink] WHERE [SmsMessageContentId] IN
+		(
+			SELECT [Id] FROM [Sms].[SmsMessageContent] WHERE [SmsMessageId] = {0}
+		)
+		ORDER BY [Id] DESC
+		</Text>
+    </Query2>
+  
+   <Query2>
+		<Title>SmsMessageContent</Title>
+		<Text>SELECT * FROM [Sms].[SmsMessageContent] WHERE SmsMessageId = {0}</Text>    
+	</Query2>
+	<Query2>
+		<Title>SmsMessage</Title>
+		<Text>SELECT * FROM [Sms].[SmsMessage] WHERE [Id]={0}</Text>    
+	</Query2>
+</HistoryQuery2>

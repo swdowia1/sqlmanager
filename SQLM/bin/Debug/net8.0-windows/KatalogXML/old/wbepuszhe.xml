@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HistoryQuery2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Question>Podaj id wiadomosci</Question>
+	<Title>WevPushe</Title>
+	<Query2>
+		<Title>WebPushMessageContent</Title>
+		<Text>
+
+		select * from [WebPush].[WebPushMessageContent] where id={0}
+		</Text>
+    </Query2>
+  
+  
+</HistoryQuery2>

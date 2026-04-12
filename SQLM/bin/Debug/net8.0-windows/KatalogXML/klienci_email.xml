@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HistoryQuery2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Question>Bez  parametrów</Question>
+	<Title>KLineci email</Title>
+	<Query2>
+		<Title>WebPushMessageContent</Title>
+		<Text>
+
+		select top 100 id,Email from Customer.CustomerEmail order by 1 desc
+		</Text>
+    </Query2>
+  
+  
+</HistoryQuery2>

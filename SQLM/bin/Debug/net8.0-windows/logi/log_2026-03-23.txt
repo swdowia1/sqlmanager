@@ -1,0 +1,69 @@
+2026-03-23 14:15:40.1948|Info|start|
+2026-03-23 14:15:40.2274|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-23 14:15:40.4900|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-23 14:15:40.5576|Info|
+
+====================      pytamy o lista baza        ==========
+SELECT name 
+FROM sys.databases
+ORDER BY name|
+2026-03-23 14:15:40.6433|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-23 14:15:49.0519|Info|
+
+====================      pytamy o lista tabel w bazie        ==========
+SELECT       
+    SCHEMA_NAME(A.schema_id) as schemat,A.Name AS Tabela, 
+    AVG(B.rows) AS Ilosc, 
+    COUNT(DISTINCT C.column_id) AS LiczbaKolumn
+FROM sys.objects A
+INNER JOIN sys.partitions B ON A.object_id = B.object_id
+LEFT JOIN sys.columns C ON A.object_id = C.object_id
+WHERE A.type = 'U'
+GROUP BY A.schema_id, A.Name, A.object_id
+ORDER BY 1,2|
+2026-03-23 14:16:09.1698|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Email].[Confirmation] order by 1 desc|
+2026-03-23 14:16:09.1808|Info|Liczba wiersz :195   Email Confirmation/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-03-23 14:16:29.3288|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Customer].[CustomerConsent] order by 1 desc|
+2026-03-23 14:16:29.3482|Info|Liczba wiersz :1000   Customer CustomerConsent/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-03-23 14:16:33.9010|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Config].[Consent] order by 1 desc|
+2026-03-23 14:16:33.9575|Info|Liczba wiersz :100   Config Consent/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
+2026-03-23 14:17:24.7275|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Config].[Consent] where name like 'sw%' order by 1 desc|
+2026-03-23 14:19:47.7736|Info|
+
+====================      pytamy o wynik        ==========
+select top 1000 * from [Email].[Confirmation] order by 1 desc|
+2026-03-23 14:19:47.7736|Info|Liczba wiersz :195   Email Confirmation/vm-sql-ecdp-dev:ECDP_TR_Unit_1|
