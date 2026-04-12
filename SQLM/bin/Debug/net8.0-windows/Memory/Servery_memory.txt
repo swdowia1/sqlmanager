@@ -1,3 +1,0 @@
-vm-sql-ecdp-dev
-vm-sql-ecdp-stg
-VM-SQL-ECDP-REL
