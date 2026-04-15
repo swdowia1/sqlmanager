@@ -50,10 +50,10 @@
             // tvServer
             // 
             tvServer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            tvServer.Location = new Point(24, 22);
+            tvServer.Location = new Point(24, 327);
             tvServer.Margin = new Padding(3, 2, 3, 2);
             tvServer.Name = "tvServer";
-            tvServer.Size = new Size(392, 281);
+            tvServer.Size = new Size(392, 390);
             tvServer.TabIndex = 0;
             tvServer.NodeMouseClick += tvServer_NodeMouseClick;
             // 
@@ -63,11 +63,11 @@
             dgTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgTable.Columns.AddRange(new DataGridViewColumn[] { Schamat, Nazwa, ilosc, kolumny, def });
-            dgTable.Location = new Point(826, 56);
+            dgTable.Location = new Point(449, 56);
             dgTable.Margin = new Padding(3, 2, 3, 2);
             dgTable.Name = "dgTable";
             dgTable.RowHeadersWidth = 51;
-            dgTable.Size = new Size(591, 272);
+            dgTable.Size = new Size(968, 686);
             dgTable.TabIndex = 1;
             dgTable.CellClick += dgTable_CellClick;
             // 
@@ -186,7 +186,7 @@
             // dgLastServer
             // 
             dgLastServer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgLastServer.Location = new Point(422, 50);
+            dgLastServer.Location = new Point(24, 16);
             dgLastServer.Name = "dgLastServer";
             dgLastServer.Size = new Size(376, 276);
             dgLastServer.TabIndex = 11;
@@ -196,7 +196,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1428, 338);
+            ClientSize = new Size(1428, 752);
             Controls.Add(dgLastServer);
             Controls.Add(btnKolumny);
             Controls.Add(btnAddSql);

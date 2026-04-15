@@ -19,7 +19,8 @@ namespace SQLM.ModalWindow
         private void dgFile_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var SelectedRow = dgFile.CurrentRow<QueryListSaveData>();
-            using (MainQueryAll form = new MainQueryAll(SelectedRow.historyQuery2, _serverName, _databaseName))
+
+            using (QueryListForm form = new QueryListForm(SelectedRow.historyQuery2, classFun.PolDataBase(_serverName, _databaseName)))
             {
                 form.ShowDialog(this);
             }

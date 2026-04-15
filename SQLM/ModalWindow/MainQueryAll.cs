@@ -16,6 +16,7 @@ namespace SQLM.ModalWindow
             pol = classFun.PolDataBase(server, database);
             this.Text = pol;
             lblQuestion.Text = _HistoryQuery2.Question;
+            dataGridView1.SetStyle();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -23,10 +24,15 @@ namespace SQLM.ModalWindow
             lblInfo.Text = "";
             // var queries = _HistoryQuery2.Query;
             var queries = new List<Query2>(_HistoryQuery2.Query);
-
+            if (queries.Count == 1)
+            {
+                dataGridView1.DataSource = classData.FillData(string.Format(queries[0].Text, textBox1.Text), pol, "wynik", false);
+                tableLayoutPanel1.Visible = false;
+                return;
+            }
+            dataGridView1.Visible = false;
 
             int rows = queries.Count;
-
 
             tableLayoutPanel1.Controls.Clear();
             tableLayoutPanel1.RowStyles.Clear();
@@ -74,7 +80,6 @@ namespace SQLM.ModalWindow
 
             File.WriteAllText(classConsst.QueryTextFileSQL, sb.ToString());
             Clipboard.SetText(sb.ToString());
-
 
             lblInfo.Text = "__ZAPISANO DO SCHOWAKA__";
             classFun.OPenInNotePad(classConsst.QueryTextFileSQL);

@@ -180,6 +180,13 @@ namespace SQLM.ModalWindow
             {
                 return $"[{col.ColumnName}] = {value.ToString().ToLower()}";
             }
+            else if (type == typeof(decimal))
+            {
+                string val = Convert.ToDecimal(value)
+                    .ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+                return $"[{col.ColumnName}] = {val}";
+            }
             else // liczby
             {
                 return $"[{col.ColumnName}] = {value}";
