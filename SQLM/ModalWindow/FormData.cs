@@ -37,6 +37,8 @@ namespace SQLM.ModalWindow
             ctxMenu.Items.Add("Filtruj = wartość", null, FilterEquals_Click);
             ctxMenu.Items.Add("Filtruj zawiera", null, FilterContains_Click);
             ctxMenu.Items.Add("Usuń filtr", null, ClearFilter_Click);
+            ctxMenu.Items.Add("Konsument", null, Customer_Click);
+            ctxMenu.Items.Add("Pokaż wiersz", null, btnRowShow_Click);
 
             dgDane.ContextMenuStrip = ctxMenu;
             tableInfo = t;
@@ -46,7 +48,15 @@ namespace SQLM.ModalWindow
             {
                 dtOrg = classData.FillData(t.QueryText, t.POL, "wynik");
                 rtQuery.Text = t.QueryText;
-                GetTablesFromQuery(t.QueryText);
+                List<string> tabela = GetTablesFromQuery(t.QueryText);
+                if (tabela.Count == 1)
+                {
+                    string[] pow = tabela.First().Split(".");
+                    string schema = pow.Length == 2 ? pow[0].Trim('[', ']') : "dbo";
+                    string table = pow.Length == 2 ? pow[1].Trim('[', ']') : pow[0].Trim('[', ']');
+                    dgKolumn.SetStyle();
+                    dgKolumn.DataSource = GlobalData.GetColumns(table);
+                }
                 if (dtOrg != null)
                     this.Text = "Liczba wiersz :" + dtOrg.Rows.Count + "   " + t.ToString();
                 dgDane.DataSource = dtOrg;
@@ -98,6 +108,17 @@ namespace SQLM.ModalWindow
 
                 dgDane.CurrentCell = dgDane[e.ColumnIndex, e.RowIndex];
             }
+        }
+
+        private void Customer_Click(object? sender, EventArgs e)
+        {
+            if (clickedRowIndex < 0 || clickedColumnIndex < 0 || dtOrg == null)
+                return;
+
+            string columnName = dgDane.Columns[clickedColumnIndex].DataPropertyName;
+            object value = dgDane.Rows[clickedRowIndex].Cells[clickedColumnIndex].Value;
+            var viewer = new FormDataOne($"select * from Customer.Customer where id={value}");
+            viewer.ShowDialog();
         }
 
         private void FilterEquals_Click(object sender, EventArgs e)

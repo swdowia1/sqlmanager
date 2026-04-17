@@ -39,6 +39,7 @@ namespace SQLM
                 })
                 .ToList();
             dgLastServer.DataSource = result;
+            GlobalData.SetValue(result[0].ServerName, result[0].DataBaseName);
             int k = 0;
             foreach (string field in serwerplik)
             {
@@ -102,8 +103,7 @@ ORDER BY name", pol, "lista baza");
             tvServer.SelectedNode = e.Node;
             if (e.Node.Nodes.Count == 0)
             {
-                GlobalData.ServerName = e.Node.Parent.Text;
-                GlobalData.DataBaseName = e.Node.Text;
+                GlobalData.SetValue(e.Node.Parent.Text, e.Node.Text);
                 ListaTabelBaza(GlobalData.ServerName, GlobalData.DataBaseName);
                 classMemory.MemoryWrite(ConfigSave.Server, $"{GlobalData.ServerName}/{GlobalData.DataBaseName}");
                 classFun.FavoriteAdd($"{GlobalData.ServerName}/{GlobalData.DataBaseName}");
@@ -223,8 +223,7 @@ ORDER BY TABLE_SCHEMA, TABLE_NAME, ORDINAL_POSITION";
         {
             var SelectedRow = dgLastServer.CurrentRow<ServerDatabase>();
             ListaTabelBaza(SelectedRow.ServerName, SelectedRow.DataBaseName);
-            GlobalData.DataBaseName = SelectedRow.DataBaseName;
-            GlobalData.ServerName = SelectedRow.ServerName;
+            GlobalData.SetValue(SelectedRow.ServerName, SelectedRow.DataBaseName);
 
             classMemory.MemoryWrite(ConfigSave.Server, $"{GlobalData.ServerName}/{GlobalData.DataBaseName}");
             classFun.FavoriteAdd($"{GlobalData.ServerName}/{GlobalData.DataBaseName}");
