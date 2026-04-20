@@ -34,6 +34,7 @@
             tabPage1 = new TabPage();
             dgDane = new DataGridView();
             tabPage2 = new TabPage();
+            dgKolumn = new DataGridView();
             rtQuery = new RichTextBox();
             btnRunSQL = new Button();
             btnExit = new Button();
@@ -42,7 +43,6 @@
             btnFiltr = new Button();
             txtFilter = new TextBox();
             btnClearFiltr = new Button();
-            dgKolumn = new DataGridView();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgDane).BeginInit();
@@ -113,6 +113,15 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Zapytanie";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dgKolumn
+            // 
+            dgKolumn.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgKolumn.Location = new Point(892, 5);
+            dgKolumn.Name = "dgKolumn";
+            dgKolumn.Size = new Size(175, 343);
+            dgKolumn.TabIndex = 1;
+            dgKolumn.Click += dgKolumn_Click;
             // 
             // rtQuery
             // 
@@ -197,14 +206,6 @@
             btnClearFiltr.Text = "Czyść filtr";
             btnClearFiltr.UseVisualStyleBackColor = true;
             btnClearFiltr.Click += btnClearFiltr_Click;
-            // 
-            // dgKolumn
-            // 
-            dgKolumn.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgKolumn.Location = new Point(892, 5);
-            dgKolumn.Name = "dgKolumn";
-            dgKolumn.Size = new Size(175, 343);
-            dgKolumn.TabIndex = 1;
             // 
             // FormData
             // 

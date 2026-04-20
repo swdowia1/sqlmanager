@@ -39,7 +39,8 @@ namespace SQLM
                 })
                 .ToList();
             dgLastServer.DataSource = result;
-            GlobalData.SetValue(result[0].ServerName, result[0].DataBaseName);
+            if (result.Count > 0)
+                GlobalData.SetValue(result[0].ServerName, result[0].DataBaseName);
             int k = 0;
             foreach (string field in serwerplik)
             {
@@ -110,16 +111,6 @@ ORDER BY name", pol, "lista baza");
                 this.Text = $"server {GlobalData.ServerName} baza: {GlobalData.DataBaseName}";
 
                 TableInfo SelectedRow = new TableInfo(GlobalData.ServerName, GlobalData.DataBaseName);
-                string sql = @"
-SELECT 
-    TABLE_SCHEMA,
-    TABLE_NAME,
-    COLUMN_NAME,
-    DATA_TYPE,
-    CHARACTER_MAXIMUM_LENGTH
-FROM INFORMATION_SCHEMA.COLUMNS
-ORDER BY TABLE_SCHEMA, TABLE_NAME, ORDINAL_POSITION";
-                GlobalData.Kolumny = classData.FillData(sql, SelectedRow.POL);
             }
         }
 

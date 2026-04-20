@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Text.RegularExpressions;
 using SQLM.Klasy;
+using SQLM.VM;
 
 namespace SQLM.ModalWindow
 {
@@ -276,6 +277,23 @@ namespace SQLM.ModalWindow
         private void btnClearFiltr_Click(object sender, EventArgs e)
         {
             ClearFiltr();
+        }
+
+        private void dgKolumn_Click(object sender, EventArgs e)
+        {
+            // richTextBox1.SelectedText = text;
+            var selectRow = dgKolumn.CurrentRow<StringValue>();
+
+            if (!string.IsNullOrEmpty(selectRow.Value))
+            {
+                int start = rtQuery.SelectionStart;
+
+                rtQuery.SelectedText = selectRow.Value + ", "; // np. spacja między kolumnami
+
+                // ustaw kursor za wstawionym tekstem
+                rtQuery.SelectionStart = start + selectRow.Value.Length + 1;
+                rtQuery.SelectionLength = 0;
+            }
         }
     }
 }

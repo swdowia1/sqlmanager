@@ -15,6 +15,16 @@ namespace SQLM.Klasy
             ServerName = ser;
             DataBaseName = dat;
             Pol = classFun.PolDataBase(ser, dat);
+            string sql = @"
+SELECT 
+    TABLE_SCHEMA,
+    TABLE_NAME,
+    COLUMN_NAME,
+    DATA_TYPE,
+    CHARACTER_MAXIMUM_LENGTH
+FROM INFORMATION_SCHEMA.COLUMNS
+ORDER BY TABLE_SCHEMA, TABLE_NAME, ORDINAL_POSITION";
+            Kolumny = classData.FillData(sql, Pol);
         }
 
         public static List<StringValue> GetColumns(string schema, string table)
