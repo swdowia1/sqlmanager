@@ -31,6 +31,15 @@ namespace SQLM.Klasy
             return list;
         }
 
+        public static void AddTableMemory(string we)
+        {
+            List<string> lista = classMemory.MemoryReadList(ConfigSave.QueryList);
+            lista.Remove(we);
+            lista.Add(we);
+
+            classMemory.MemoryWriteList(ConfigSave.QueryList, lista);
+        }
+
         public static void FavoriteAdd(string zaw)
         {
             List<string> lista = classMemory.MemoryReadList(ConfigSave.Favorite);

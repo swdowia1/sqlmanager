@@ -138,6 +138,7 @@ ORDER BY TABLE_SCHEMA, TABLE_NAME, ORDINAL_POSITION";
 
             using (FormData form = new FormData(SelectedRow))
             {
+                classFun.AddTableMemory(SelectedRow.schemat + ";" + SelectedRow.nazwa);
                 classMemory.MemoryWrite(ConfigSave.Table, SelectedRow.schemat + "_" + SelectedRow.nazwa);
                 form.ShowDialog(this);
             }

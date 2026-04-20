@@ -6,6 +6,6 @@
         Servery,
         Table,
         Favorite,
-        Query,
+        QueryList,
     }
 }
