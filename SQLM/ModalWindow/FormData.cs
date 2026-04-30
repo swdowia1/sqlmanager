@@ -69,6 +69,58 @@ namespace SQLM.ModalWindow
             }
         }
 
+        public FormData(string tablename)
+        {
+            InitializeComponent();
+            dgDane.CellMouseDown += dgDane_CellMouseDown;
+            rtQuery.Text = $"select top 1000 * from {tablename} order by 1 desc";
+
+            ctxMenu.Items.Add("Filtruj = wartość", null, FilterEquals_Click);
+            ctxMenu.Items.Add("Filtruj zawiera", null, FilterContains_Click);
+            ctxMenu.Items.Add("Usuń filtr", null, ClearFilter_Click);
+            ctxMenu.Items.Add("Konsument", null, Customer_Click);
+            ctxMenu.Items.Add("Pokaż wiersz", null, btnRowShow_Click);
+
+            dgDane.ContextMenuStrip = ctxMenu;
+
+            dgDane.SetStyleSchowek();
+
+            //if (t.QueryText.Length > 0)
+            //{
+            //    dtOrg = classData.FillData(t.QueryText, t.POL, "wynik");
+            //    rtQuery.Text = t.QueryText;
+            //    List<string> tabela = GetTablesFromQuery(t.QueryText);
+            //    if (tabela.Count == 1)
+            //    {
+            //        string[] pow = tabela.First().Split(".");
+            //        string schema = pow.Length == 2 ? pow[0].Trim('[', ']') : "dbo";
+            //        string table = pow.Length == 2 ? pow[1].Trim('[', ']') : pow[0].Trim('[', ']');
+            //        dgKolumn.SetStyle();
+            //        dgKolumn.DataSource = GlobalData.GetColumns(table);
+            //    }
+            //    if (dtOrg != null)
+            //        this.Text = "Liczba wiersz :" + dtOrg.Rows.Count + "   " + t.ToString();
+            //    dgDane.DataSource = dtOrg;
+            //    classLog.LogInfo(this.Text);
+            //}
+            //else
+            //{
+            //    tabControl1.SelectedIndex = 1;
+            //}
+            string quer = $"select top 1000 * from {tablename} order by 1 desc";
+            List<string> tabela = GetTablesFromQuery(quer);
+            if (tabela.Count == 1)
+            {
+                string[] pow = tabela.First().Split(".");
+                string schema = pow.Length == 2 ? pow[0].Trim('[', ']') : "dbo";
+                string table = pow.Length == 2 ? pow[1].Trim('[', ']') : pow[0].Trim('[', ']');
+                dgKolumn.SetStyle();
+                dgKolumn.DataSource = GlobalData.GetColumns(table);
+            }
+            dtOrg = classData.FillData(quer, GlobalData.Pol, "wynik");
+            dgDane.DataSource = dtOrg;
+        }
+
         private string ShowInputDialog(string title, string defaultValue)
         {
             Form prompt = new Form()
@@ -217,10 +269,10 @@ namespace SQLM.ModalWindow
 
         private void btnRunSQL_Click(object sender, EventArgs e)
         {
-            dtOrg = classData.FillData(rtQuery.Text, tableInfo.POL, "wynik");
+            dtOrg = classData.FillData(rtQuery.Text, GlobalData.Pol, "wynik");
 
             if (dtOrg != null)
-                this.Text = "Liczba wiersz :" + dtOrg.Rows.Count + " " + tableInfo.serverName + " zapytanie";
+                this.Text = "Liczba wiersz :" + dtOrg.Rows.Count;
             dgDane.DataSource = dtOrg;
             tabControl1.SelectedIndex = 0;
         }

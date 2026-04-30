@@ -28,34 +28,47 @@ namespace SQLM.ModalWindow
             Panel topPanel = new Panel
             {
                 Dock = DockStyle.Top,
-                Height = 40
+                Height = 50
             };
 
             TextBox txtUserId = new TextBox
             {
                 Width = 100,
                 Left = 10,
-                Top = 10
+                Top = 12
             };
 
             Button btnLoad = new Button
             {
                 Text = "Run",
                 Left = 120,
-                Top = 8
+                Width = 80,
+                Top = 10
             };
             btnLoad.Click += (sender, e) => { LoadAndArrange(txtUserId.Text); };
+
+            Button btnCloseAll = new Button
+            {
+                Text = "zamknij całą aplikacje",
+                Left = 220,
+                Width = 180,
+                Top = 10
+            };
+            btnCloseAll.Click += (sender, e) => { classFun.ConfirmAndExit(); };
+
             Label lblQuestion = new Label
             {
-                Width = 400,
-                Text = _HistoryQuery2.Question,
-                Left = 240,
-                Top = 8
+                AutoSize = false,
+                Width = 500,
+                Height = 30,
+                Left = 420, // przesunięte za button
+                Top = 14,
+                Text = _HistoryQuery2.Question
             };
             topPanel.Controls.Add(txtUserId);
             topPanel.Controls.Add(btnLoad);
             topPanel.Controls.Add(lblQuestion);
-
+            topPanel.Controls.Add(btnCloseAll);
             Controls.Add(topPanel);
             topPanel.BringToFront();
         }

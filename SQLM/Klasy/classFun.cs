@@ -31,13 +31,18 @@ namespace SQLM.Klasy
             return list;
         }
 
-        public static void AddTableMemory(string we)
+        public static void AddTableMemory(string we, DataGridView dg)
         {
             List<string> lista = classMemory.MemoryReadList(ConfigSave.QueryList);
             lista.Remove(we);
             lista.Add(we);
-
+            if (lista.Count > 10)
+            {
+                lista.RemoveAt(0);
+            }
             classMemory.MemoryWriteList(ConfigSave.QueryList, lista);
+            lista.Reverse();
+            dg.DataSource = lista.Select(x => new StringValue(x)).ToList();
         }
 
         public static void FavoriteAdd(string zaw)

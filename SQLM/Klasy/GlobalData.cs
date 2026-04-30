@@ -33,10 +33,7 @@ ORDER BY TABLE_SCHEMA, TABLE_NAME, ORDINAL_POSITION";
                 .Where(r =>
                     r.Field<string>("TABLE_SCHEMA") == schema &&
                     r.Field<string>("TABLE_NAME") == table)
-                .Select(r => new StringValue
-                {
-                    Value = r.Field<string>("COLUMN_NAME")
-                })
+                .Select(r => new StringValue(r.Field<string>("COLUMN_NAME")))
                 .ToList();
         }
 
@@ -45,10 +42,7 @@ ORDER BY TABLE_SCHEMA, TABLE_NAME, ORDINAL_POSITION";
             return Kolumny.AsEnumerable()
                 .Where(r =>
                     r.Field<string>("TABLE_NAME") == table)
-                .Select(r => new StringValue
-                {
-                    Value = r.Field<string>("COLUMN_NAME")
-                })
+                .Select(r => new StringValue(r.Field<string>("COLUMN_NAME")))
                 .ToList();
         }
     }

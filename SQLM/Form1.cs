@@ -21,8 +21,12 @@ namespace SQLM
             classLog.LogInfo("start");
             serwery = new Dictionary<string, string>();
             dgTable.SetStyle(false);
+            dgTableLast.SetStyle();
+            List<string> lastTable = classMemory.MemoryReadList(ConfigSave.QueryList);
+            lastTable.Reverse();
+            dgTableLast.DataSource = lastTable.Select(x => new StringValue(x)).ToList();
             dgLastServer.SetStyle();
-            // classMemory.MemoryWriteList(ConfigSave.Favorite, lista);
+
             List<string> serwerplik = classMemory.MemoryReadList(ConfigSave.Servery);
             List<string> favorite = classMemory.MemoryReadList(ConfigSave.Favorite);
             favorite.Reverse();
@@ -129,8 +133,9 @@ ORDER BY name", pol, "lista baza");
 
             using (FormData form = new FormData(SelectedRow))
             {
-                classFun.AddTableMemory(SelectedRow.schemat + ";" + SelectedRow.nazwa);
-                classMemory.MemoryWrite(ConfigSave.Table, SelectedRow.schemat + "_" + SelectedRow.nazwa);
+                string pom = $"[{SelectedRow.schemat}].[{SelectedRow.nazwa}]";
+                classFun.AddTableMemory(pom, dgTableLast);
+                classMemory.MemoryWrite(ConfigSave.Table, pom);
                 form.ShowDialog(this);
             }
         }
@@ -219,6 +224,17 @@ ORDER BY TABLE_SCHEMA, TABLE_NAME, ORDINAL_POSITION";
 
             classMemory.MemoryWrite(ConfigSave.Server, $"{GlobalData.ServerName}/{GlobalData.DataBaseName}");
             classFun.FavoriteAdd($"{GlobalData.ServerName}/{GlobalData.DataBaseName}");
+        }
+
+        private void dgTableLast_Click(object sender, EventArgs e)
+        {
+            var select = dgTableLast.CurrentRow<StringValue>();
+            classFun.AddTableMemory(select.Value, dgTableLast);
+            classMemory.MemoryWrite(ConfigSave.Table, select.Value);
+            using (FormData form = new FormData(select.Value))
+            {
+                form.ShowDialog(this);
+            }
         }
     }
 }

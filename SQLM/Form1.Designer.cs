@@ -43,8 +43,10 @@
             btnAddSql = new Button();
             btnKolumny = new Button();
             dgLastServer = new DataGridView();
+            dgTableLast = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dgTable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgLastServer).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgTableLast).BeginInit();
             SuspendLayout();
             // 
             // tvServer
@@ -60,14 +62,14 @@
             // dgTable
             // 
             dgTable.AllowUserToOrderColumns = true;
-            dgTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             dgTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgTable.Columns.AddRange(new DataGridViewColumn[] { Schamat, Nazwa, ilosc, kolumny, def });
-            dgTable.Location = new Point(449, 56);
+            dgTable.Location = new Point(422, 55);
             dgTable.Margin = new Padding(3, 2, 3, 2);
             dgTable.Name = "dgTable";
             dgTable.RowHeadersWidth = 51;
-            dgTable.Size = new Size(968, 686);
+            dgTable.Size = new Size(873, 686);
             dgTable.TabIndex = 1;
             dgTable.CellClick += dgTable_CellClick;
             // 
@@ -192,11 +194,22 @@
             dgLastServer.TabIndex = 11;
             dgLastServer.Click += dgLastServer_Click;
             // 
+            // dgTableLast
+            // 
+            dgTableLast.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            dgTableLast.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgTableLast.Location = new Point(1398, 55);
+            dgTableLast.Name = "dgTableLast";
+            dgTableLast.Size = new Size(342, 596);
+            dgTableLast.TabIndex = 12;
+            dgTableLast.Click += dgTableLast_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1428, 752);
+            ClientSize = new Size(1742, 752);
+            Controls.Add(dgTableLast);
             Controls.Add(dgLastServer);
             Controls.Add(btnKolumny);
             Controls.Add(btnAddSql);
@@ -213,6 +226,7 @@
             WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)dgTable).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgLastServer).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgTableLast).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -235,5 +249,6 @@
         private Button btnAddSql;
         private Button btnKolumny;
         private DataGridView dgLastServer;
+        private DataGridView dgTableLast;
     }
 }
